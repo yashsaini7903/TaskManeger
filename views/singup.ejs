@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager - Sign Up</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-br from-zinc-900 via-zinc-800 to-black min-h-screen flex items-center justify-center text-white font-sans">
+  
+  <!-- Card Container -->
+  <div class="w-full max-w-lg bg-zinc-950 rounded-2xl shadow-2xl p-10 border border-zinc-800">
+    
+    <!-- App Name -->
+    <h1 class="text-4xl font-extrabold text-center mb-2 text-blue-400 tracking-wide">Task Manager</h1>
+    <p class="text-center text-zinc-400 mb-6">Organize your tasks. Stay productive.</p>
+
+    <!-- Logout -->
+    <div class="flex justify-end mb-4">
+      <a class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-sm font-medium transition-all duration-300" href="/login">Log In</a>
+    </div>
+
+    <!-- Heading -->
+    <h3 class="text-2xl font-semibold mb-6 text-center">Create Your Account</h3>
+    
+    <!-- Form -->
+    <form action="/register" method="post" class="space-y-4">
+      <input class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" type="text" placeholder="username" name="username">
+      
+      <input class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" type="text" placeholder="name" name="name">
+      
+      <input class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" type="email" placeholder="email" name="email">
+      
+      <input class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" type="number" placeholder="Age" name="age">
+      
+      <input class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" type="password" placeholder="password" name="password">
+      
+      <input class="w-full bg-blue-500 hover:bg-blue-600 px-4 py-3 rounded-lg font-semibold cursor-pointer transition-all duration-300" type="submit" value="Create user">
+    </form>
+
+    <!-- Footer -->
+    <p class="text-center text-zinc-500 text-sm mt-6">
+      Already have an account? 
+      <a href="/login" class="text-blue-400 hover:underline">Log in</a>
+    </p>
+  </div>
+  
+</body>
+</html>

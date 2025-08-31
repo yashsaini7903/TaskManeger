@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager - Profile</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-zinc-900 text-white min-h-screen flex flex-col">
+  
+  <!-- Profile Header -->
+  <header class="bg-zinc-950 border-b border-zinc-800 p-6 flex items-center justify-between">
+    <!-- Left: Avatar + User -->
+    <div class="flex items-center gap-4">
+      <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-2xl font-bold">
+        <%= user.name.charAt(0).toUpperCase() %>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold"><%= user.name %></h1>
+        <p class="text-zinc-400">@<%= user.username %></p>
+      </div>
+    </div>
+    <!-- Right: Logout -->
+    <a href="/logout" class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg text-sm font-medium transition">
+      Log out
+    </a>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="flex-1 flex flex-col md:flex-row overflow-hidden">
+    
+    <!-- Left: Create Task Form -->
+    <aside class="w-full md:w-1/3 bg-zinc-950 border-r border-zinc-800 p-6">
+      <h2 class="text-xl font-semibold mb-4">Add New Task</h2>
+      <form action="/task" method="post" class="space-y-4">
+        
+        <input type="text" name="title" placeholder="Task Title" 
+               class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        
+        <textarea name="notes" placeholder="Task Notes" rows="3" 
+                  class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+        
+        <select name="status" 
+                class="w-full bg-zinc-900 px-4 py-3 rounded-lg border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="pending" selected>Pending</option>
+          <option value="completed">Completed</option>
+        </select>
+        
+        <button type="submit" 
+                class="w-full bg-blue-500 hover:bg-blue-600 px-4 py-3 rounded-lg font-semibold transition">
+          Create Task
+        </button>
+      </form>
+    </aside>
+
+    <!-- Right: Task List -->
+    <section class="w-full md:w-2/3 p-6 overflow-y-auto">
+      <h2 class="text-xl font-semibold mb-4">Your Tasks</h2>
+      <div class="space-y-4">
+        <% user.tasks.reverse().forEach(function(task){ %>
+          <div class="bg-zinc-950 p-5 rounded-lg border border-zinc-800 hover:border-zinc-700 transition">
+            <div class="flex justify-between items-start">
+              <div>
+                <h3 class="text-lg font-semibold text-blue-400"><%= task.title %></h3>
+                <p class="text-sm text-zinc-400 mt-1"><%= task.notes %></p>
+              </div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-medium 
+                           <%= task.status === 'completed' ? 'bg-green-600 text-white' : 'bg-red-600 text-white' %>">
+                <%= task.status %>
+              </span>
+            </div>
+            <!-- Actions -->
+            <div class="mt-3 flex gap-4 text-sm">
+              <form action="/task/toggle/<%= task._id %>" method="post">
+                <button type="submit" class="px-3 py-1 text-xs rounded-lg font-medium 
+                        <%= task.status === 'completed' ? 'bg-zinc-700 hover:bg-zinc-600' : 'bg-blue-500 hover:bg-blue-600' %> transition">
+                  Toggle
+                </button>
+              </form>
+              <a href="/edit/<%= task._id %>" class="text-blue-400 hover:underline">Edit</a>
+              <a href="/delete/<%= task._id %>" class="text-red-400 hover:underline">Delete</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
