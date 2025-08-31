@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://yashkumar:<password>@taskmaneger.uxn1lc8y.mongodb.net/taskmanager?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log(" MongoDB Atlas Connected"))
-.catch(err => console.error(" MongoDB Connection Error:", err));
+mongoose.connect("mongodb+srv://yashkumar:<db_password>@taskmaneger.uxn1c8y.mongodb.net/?retryWrites=true&w=majority&appName=TaskManeger"}
 
 const userSchema = mongoose.Schema({
     username:String,
@@ -16,5 +11,6 @@ const userSchema = mongoose.Schema({
          {type:mongoose.Schema.Types.ObjectId,ref:"task"}
     ]
 });
+
 
 module.exports= mongoose.model('user',userSchema);
