@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://yashkumar:<db_password>@taskmaneger.uxn1c8y.mongodb.net/?retryWrites=true&w=majority&appName=TaskManeger"}
+mongoose.connect("mongodb+srv://yashkumar:<db_password>@taskmaneger.uxn1c8y.mongodb.net/?retryWrites=true&w=majority&appName=TaskManeger");
 
 const userSchema = mongoose.Schema({
     username:String,
@@ -14,3 +14,4 @@ const userSchema = mongoose.Schema({
 
 
 module.exports= mongoose.model('user',userSchema);
+
