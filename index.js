@@ -5,6 +5,21 @@ const jwt = require('jsonwebtoken');
 const bcrpt = require('bcrypt');
 const userModel =  require('./models/user');
 const taskModel = require('./models/task');
+let mongoose=require("mongoose")
+//  mongoose.connect("mongodb+srv://ysaini9466_db_user:LCOnVVGAAmwxwToH@cluster0.rkstdwn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("mongodb+srv://nodeuser:Yahoo123@cluster0.ag3fwai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+  tls: true,
+  tlsAllowInvalidCertificates: true
+});
+   
+
+ let db=mongoose.connection;
+db.once("open",()=>{
+    console.log("database connected succesfully")
+})
+db.on("error",()=>{
+    console.log("error appeared");
+})
 
 app.set('view engine','ejs');
 app.use(express.json());
@@ -127,4 +142,6 @@ function isLoggedIn(req,res,next){
     next();
 }
 
-app.listen(3000);
+app.listen(3000,()=>{
+    console.log("server started succesfully");
+});
